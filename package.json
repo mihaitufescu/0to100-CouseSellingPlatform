@@ -1,0 +1,24 @@
+{
+  "name": "tufescu264",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon . & npm run scss",
+    "scss": "sass --watch src/scss/main.scss public/styles/main.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "pg": "^8.10.0",
+    "sass": "^1.59.3",
+    "sharp": "^0.32.0"
+  },
+  "devDependencies": {
+    "node-sass": "^8.0.0"
+  }
+}

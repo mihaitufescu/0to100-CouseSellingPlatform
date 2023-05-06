@@ -1,0 +1,27 @@
+<div id="galerie-grid">
+    <% 
+    var d=new Date();
+    var incadrare="" ;
+
+    console.log(d.getHours());
+    
+    if(d.getHours() <= 4 || d.getHours() >= 20){
+        incadrare = "noapte";
+    }
+    else if (d.getHours() >= 5 && d.getHours() <= 12){
+        incadrare = "dimineata";
+    }
+    else
+        incadrare = "zi";
+    
+    console.log(incadrare);
+     for (let img of locals.imagini)
+     {
+        if(img.timp === incadrare)
+        { 
+        %>
+        <img src="<%- img.fisier %>"/>
+        <%
+        } 
+    }%>
+</div>

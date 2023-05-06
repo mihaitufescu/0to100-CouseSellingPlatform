@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <%- include("../fragmente/head.ejs") %>
+        <script src="index.js"></script>
+        
+    </head>
+   
+
+<body>
+    <header>
+    <p id="banner">Acesta este un proiect scolar!!!</p> 
+    <p id="watermark"></p>
+    <p id="absolut"></p>
+    </header>
+    <%- include("../fragmente/navbar.ejs") %>
+   <h1>Platforma educationala 0to100- Descopera lumea IT cu noi! </h1>
+    
+<main id="grid">
+    <section id="home">
+        <h2> Invata tehnologii noi de programare acum! Obtinerea unui job in IT nu a fost niciodata mai usor </h2>
+        <p> Inscrie-te in programul nostru pentru ati extinde posibilitatile de angajare. 90% din angajatii nostri au gasit un <i lang="en">job</i> in IT.</p>
+        <q> Un angajator complet! - Unknown Recruitment</q>
+        <figure>
+            <picture>
+                <source media="(max-width: 600px)" srcset="/imagini/corporate.jpg">
+                <source media="(max-width: 1000px)" srcset="/imagini/corporate.jpg">
+                <source media="(min-width: 1001px)" srcset="/imagini/corporate.jpg">
+                <img src="/imagini/corporate.jpg" alt="Coding">  
+            </picture>
+            <figcaption>Cod</figcaption>
+        </figure>
+    </section>
+    <section id="main-tabel">
+        <h3>Oferta noastra de cursuri</h3>
+        <table id="tabel_cursuri">
+            <thead>
+                <tr>
+                    <th>Denumire curs:</th>
+                    <th>Tehnologii invatate:</th>
+                    <th colspan="2">Numar ore/module:</th>
+                    <th>Pret:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Full Stack</td>
+                    <td>JavaScript/Angular</td>
+                    <td>60</td>
+                    <td>3 module</td>
+                    <td>3000$</td>
+                </tr>
+                <tr>
+                    <td>Full Stack</td>
+                    <td>JavaScript/Angular</td>
+                    <td>60</td>
+                    <td>3 module</td>
+                    <td>3000$</td>
+                </tr>
+                <tr>
+                    <td>Full Stack</td>
+                    <td>JavaScript/Angular</td>
+                    <td>60</td>
+                    <td>3 module</td>
+                    <td>3000$</td>
+                </tr>
+                <tr>
+                    <td>Full Stack</td>
+                    <td>JavaScript/Angular/MySQL</td>
+                    <td>60</td>
+                    <td>3 module</td>
+                    <td>3000$</td>
+                </tr>
+            </tbody>
+            <caption><p><b>Pretul</b> a fost redus cu <span style="font-weight: bold;"> <span style="text-decoration:line-through;">10%</span> 15%</span></p> </caption>
+        </table>
+    </section>
+    <section id="lista-utilizatori">
+            <p> <strong> Lista utilizatori online </strong> </p>
+                
+                <ol>
+                    <li>dorinelmunteanu</li>
+                    <li>valericagaman</li>
+                    <li>adrianilie</li>
+                    <li>mihaicostea</li>
+                    <li>andreivan</li>
+                    <li>iasminlatovlevici</li>
+                    <li>andreibancu</li>
+                    <li>cristichivu</li>
+                    <li>cosmincontra</li>
+                </ol>
+            
+            <p><strong>Atentie! Lista poate avea un decalaj.</strong></p>
+    </section>
+    <section id="calendar-evenimente">
+        <h3>Calendar evenimente</h3>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe ducimus ratione rerum nam. Quos, dolorem? Maxime, voluptatem quis! Possimus unde veritatis harum fugiat alias corrupti nisi voluptatibus, sequi dignissimos veniam!</p>
+    </section>
+    <section id="faq">
+        <div id="place-animated-icon">
+            <div class="fa-3x">
+                <i class="fa-solid fa-circle-info fa-beat-fade style=" style="--fa-beat-fade-opacity: 0.67; --fa-beat-fade-scale: 1.075;color: #ffffff;" ></i>
+            </div>
+        </div>
+        <h3>Intrebari frecvente</h3>
+        <details>
+            <summary>Cursurile sunt rambursabile in <strong>30 de zile!</strong></summary>
+            <p>Dupa perioada de gratie de 30 de zile, un curs achizitionat nu mai poate sa fie rambursat</p>
+        </details>
+        <details>
+            <summary>Certificatele sunt obtinute doar in urma examenului specific</summary>
+            <p>Pentru a obtine un certificat al unui <b>curs</b>, trebuie sa promovezi examenul specific examenului cu minim 50%.</p>
+        </details>
+    </section>
+    <section id="date-statistici">
+        <h3>Date despre utilizatori si statistici!</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste minima ea molestiae excepturi, labore quidem vitae rem eum similique quod! Harum corporis nam voluptas veniam sapiente laudantium facere architecto iste!</p>
+    </section>
+    <section id="cariere">
+        <h3>Devino trainer si fii <b>TU</b> formatorul urmatoarei generatii de programatori</h3>
+        <a class="external-link" href="#">Aplica acum</a>
+    </section>
+    <section id="prezentare">
+        <h3>Cursuri demo</h3>
+        <div id="iframeuri">  
+                <a href="https://www.youtube.com/embed/IEsy3VyvEnA" target="ivideo">Curs C#</a>
+                <a href="https://www.youtube.com/embed/GwuiVV1ZOsk" target="ivideo">Curs SQL</a>
+                <a href="https://www.youtube.com/embed/IEsy3VyvEnA" target="ivideo">Curs Python</a>
+            <iframe width="853" height="480" name="ivideo" src="https://www.youtube.com/embed/S1w82YP1A3M" title="Programare pentru începători: Introducere" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </section>   
+    <section id="galerie-dinamica">
+        <div class="galerie-animata">
+            <div id="poza-animata>">
+                <img src="#">
+            </div>
+            <div id="poza-animata>">
+                <img src="#">
+            </div>
+            <div id="poza-animata>">
+                <img src="#">
+            </div>
+            <div id="poza-animata>">
+                <img src="#">
+            </div>
+            <div id="poza-animata>">
+                <img src="#">
+            </div>
+            <div id="poza-animata>">
+                <img src="#">
+            </div>
+        </div>
+    </section>
+    <section id="galerie-statica">
+        <%- include('../fragmente/galerie_statica') %>
+    </div> 
+</section>
+    
+</main>
+<footer>
+    <%- include('../fragmente/footer') %>
+</footer>
+</body>
+
+</html>

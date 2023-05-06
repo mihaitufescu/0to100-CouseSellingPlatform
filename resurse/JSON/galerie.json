@@ -1,0 +1,26 @@
+{
+	"cale_galerie":"imagini/galerie/",
+	"imagini": [
+		{
+			"fisier":"ellison.jpg",
+			"descriere":"Oracle",
+			"timp":"dimineata"
+		},
+		{
+			"fisier":"micu.jpg",
+			"descriere":"Geniul Barladului",
+			"timp":"zi"
+			
+		},
+		{
+			"fisier":"gates.jpg",
+			"descriere":"Microsoft",
+			"timp":"noapte"
+		},
+		{
+			"fisier":"turing.jpg",
+			"descriere":"Enigma",
+			"timp":"dimineata"
+		}
+	]
+}

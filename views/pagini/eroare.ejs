@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <title> 0to100 - Cursuri programare</title>
+        <link rel="stylesheet" href="/styles/mainstyle.css">
+        <link rel="stylesheet" media="(max-width = 1000px)" href="/styles/style1000.css">
+        <link rel="stylesheet" href="/styles/nav.css">
+        <meta name="keywords" content="proiect, HTML, tag, reguli,bonus">
+        <meta name="description" content="Platforma 0to100 pentru urmatorul pas in cariera ta">
+        <meta name="author" content="Mihai Tufescu"> 
+        <%- include("../fragmente/head.ejs") %>
+        
+    </head>
+   
+
+<body>
+    <header>
+        
+    </header>
+    <!-- 
+        <label id="hamburger" for="ch-menu">
+           <img src="resurse/imagini/Hamburger_icon_alb.png" alt="menu">
+       </label>
+       <input id="ch-menu" type="checkbox">
+    -->
+    <%- include("../fragmente/navbar.ejs") %>
+   <img src="<%- imagine %>"/>
+   <h1>Eroare! </h1>
+    
+<main>
+    <ul>
+        <li><%- titlu %></li>
+        <li><%- text %></li>
+    </ul>
+</main>
+<footer>
+    <%- include('../fragmente/footer') %>
+</footer>
+</body>
+
+</html>

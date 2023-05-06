@@ -1,0 +1,424 @@
+body{
+    --culoare-bg:#0B0C10;
+    --culoare-secundara:#1F2833;
+    --culoare-neutra: #C5C6C7;
+    --culoare-heading: #45A29E;
+    --culoare-focal-point: #F64C72;
+    --culoare-p: #F0F3FB;
+    --size-p: 1rem;
+    background-color: var(--culoare-bg);
+    --spatiere-margine : 1%;
+    padding: var(--spatiere-margine);
+    margin: 0;
+}
+.placeholder > img{
+    margin: 5px;
+    width: 5%;
+    height: 5%;
+}
+#home > p {
+    text-align: center;
+}
+#home > h2 {
+    text-align: center;
+}
+q{
+    text-align: center;
+    display: block;
+    color:var(--culoare-focal-point);
+}
+*
+{
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+}
+h2{
+   
+    color: var(--culoare-heading);
+}
+
+h1{
+    padding: 2%;
+    color: var(--culoare-heading);
+}
+
+
+p,h3,li,h4{
+    color:var(--culoare-p);
+}
+p{
+    font-size: var(--size-p);
+}
+#main-tabel h3{
+    text-align: center;
+    padding-left: 5%;
+}
+#main-tabel caption{
+    text-align: center;
+}
+#tabel_cursuri{
+    text-align: center;
+    border-collapse: collapse;
+    margin: 3% 3%;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+#tabel_cursuri thead tr{
+    background-color: var(--culoare-secundara);
+    color: var(--culoare-p);
+    text-align: left;
+}
+  
+#tabel_cursuri tbody tr{
+    color:var(--culoare-p);
+}
+#tabel_cursuri{
+    padding: 3% 1%;
+    border: 5px solid var(--culoare-secundara);
+    width: 100%;
+    border-style: inset;
+    table-layout: auto; 
+}
+#tabel_cursuri tr:hover{
+    background-color: var(--culoare-heading);
+}
+#tabel_cursuri th{
+    padding: 3% 1%;
+    border: 5px solid var(--culoare-secundara);
+    border-style: inset;
+}
+#tabel_cursuri tr:nth-child(even) td {
+    padding: 3% 1%;
+    border: 5px solid var(--culoare-secundara);
+    border-bottom: 5px solid var(--culoare-secundara);
+    border-style: inset;
+}
+a.external-link:hover{
+    background-image: radial-gradient(
+    var(--culoare-heading) 0%,
+    var(--culoare-heading) 40%, transparent 80%);
+    transform-origin: center;
+    transition: 500ms ease-in;
+}
+a:visited {
+    color:var(--culoare-focal-point);
+  }
+#tabel_cursuri tr:nth-child(odd) td {
+    padding: 3% 1%;
+    border: 5px solid var(--culoare-secundara);
+    border-bottom: 5px solid var(--culoare-focal-point);
+    border-style: inset;
+}
+#main-tabel{
+    grid-area: z-tabel;
+}
+#home{
+    display: grid;
+    margin: auto;
+    width: 70%;
+    box-sizing: border-box;
+    grid-area: z-home-info;
+}
+#home img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+#calendar-evenimente{
+    display: grid;
+    grid-area: z-calendar;
+    justify-content: center;
+}
+#prezentare{
+    display: grid;
+    grid-area: z-prezentare;
+    width: 50%;
+    justify-content: center;
+    margin: auto;
+}
+#prezentare h3{
+    text-align: center;
+}
+#lista-utilizatori{
+    grid-area: z-utilizatori;
+    justify-content: center;
+}
+summary{
+    color:var(--culoare-p);
+}
+#cariere{
+    grid-area: z-cariere;
+    justify-content: center;
+}
+#iframeuri{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: flex-start;
+}
+#iframeuri a{
+    color:var(--culoare-p);
+    
+    font-size: 1.5vw;
+    background-color: var(--culoare-secundara);
+}
+#iframeuri a:hover{
+    background-color: var(--culoare-focal-point);
+    transition: ease-in 400ms;
+    transform-origin: center;
+}
+#date-statistici{
+    grid-area: z-date;
+    justify-content: center;
+}
+#faq{
+    grid-area: z-faq;
+    justify-content: center;
+}
+#content-footer
+{
+    padding-top: 2%;
+    grid-area : z-footer;
+}
+#place-animated-icon{
+    padding-top: 5%;
+    margin-bottom: -25%;
+}
+#content-footer *{
+    color:var(--culoare-neutra);
+}
+#galerie-animata{
+    grid-area: z-galerie-a;
+    align-content: center;
+    align-items: flex-start;
+}
+#grid{
+    display: grid;
+    width: 100%;
+    --grid-cell-size : 50px;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto;
+    grid-template-areas: "z-home-info z-home-info z-home-info z-home-info"
+                         "z-home-info z-home-info z-home-info z-home-info"
+                         "z-calendar z-tabel z-tabel z-faq"
+                         "z-utilizatori z-tabel z-tabel z-faq"
+                         "z-utilizatori z-date z-date z-cariere"
+                         "z-prezentare z-prezentare z-prezentare z-prezentare"
+                         "z-galerie-a z-galerie-a z-galerie-a z-galerie-a";
+    align-items: center;
+    column-gap: 10%;
+    justify-content: center;
+    
+
+}
+.link-top{
+    position: fixed;
+    margin-bottom: 1%;
+    bottom: 0.3em;
+    opacity: 0.5;
+    right: 1.2em;
+    width: 4rem;
+    box-sizing: border-box;
+    height: 3.5rem;
+    line-height: 2.75rem;
+    text-align: center;
+    border: 5px solid var(--culoare-neutra);
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-style: none solid none solid;
+    background: var(--culoare-bg);
+    box-shadow: 1px 1px 1px 0.2em black;
+}
+.arrow{
+    height: 0px;
+    width: 0;
+    opacity:0.5;
+    display: inline-block;
+    border-bottom: 1.5rem solid var(--culoare-neutra);
+    border-left: 1rem solid transparent;
+    border-right: 1rem solid transparent;
+    vertical-align:middle;
+    transform: translateY(18%);
+}
+.arrow:hover{
+    transform: translateY(1%);
+    border-bottom: 1.5rem solid var(--culoare-focal-point);
+    border-left: 1rem solid transparent;
+    border-right: 1rem solid transparent;
+    transition:ease-in 400ms;
+    opacity: 1;
+}
+.link-top:hover{
+    opacity: 1;
+    transition: ease-in 400ms;
+}
+.link-top .tooltip-text{
+    visibility: hidden;
+    background-color: black;
+    color: var(--culoare-p);
+    width: 200%;
+    text-align: center;
+    transform: translateX(-150%);
+    border-radius: 6px;
+    padding: 2% 0;
+    position: absolute;
+    z-index: 1;
+}
+.link-top:hover .tooltip-text{
+    visibility: visible;
+}
+
+@media screen and (max-width: 750px){
+    body{
+        --culoare-p: var(--culoare-p); 
+    }
+    h1{
+        padding: 2%;
+        color: var(--culoare-heading);
+        width: 100%;
+    }
+    #prezentare{
+        display: none;
+    }
+    #home{
+        display: grid;
+        margin: auto;
+        justify-content: center;
+        width: 50%;
+        box-sizing: border-box;
+    }
+    #grid{
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
+        grid-template-areas: "z-home-info"
+                             "z-home-info"
+                             "z-tabel"
+                             "z-tabel"
+                             "z-calendar"
+                             "z-utilizatori"
+                             "z-faq"
+                             "z-date"
+                             "z-cariere"
+                             "z-prezentare";
+        align-items: center;
+        justify-content: center;
+    }
+    p,h3,li,h4{
+        color:var(--culoare-p);
+    }
+    p{
+        font-size: calc(var(--size-p) - 2px);
+    }
+
+}
+#banner {
+    display: none;
+}
+#watermark,#absolut{
+    display:none;
+}
+
+@media print {
+    #absolut{
+		position: absolute;
+		display: inline-block;
+		top:100%;
+		width:20px;
+		height:20px;
+		right:0;
+		overflow: visible;
+	}
+	#absolut::after{
+		content:"Element poziționat absolut pe a doua pagină.Pentru a vedea stilul de printare apăsați Ctrl+P.";
+		position: absolute;
+		font-size:10px;
+		right:0;
+		border:5px double black;
+		width:200px;
+		height:35px;
+		display: inline-block;
+	}
+    #grid{
+        font-size: 10px;
+		box-sizing:border-box;
+		page-break-before:always;
+		background-color: white;
+		display:block;
+    }
+    #banner {
+        display: block;
+        width: 70%;
+        margin: 0 auto;
+        border: 2px dotted black;
+        padding: 10px;
+        text-align:center;
+    }
+    h1 {
+        page-break-after: always;
+        margin-top: 50%;
+        text-align:center;
+        margin-left:1cm;
+        
+    }
+    img, video, iframe, .container-iframe, [href="#top"], [href="#"], [role="banner"], [role="navigation"] {
+        display: none !important;
+    }
+    
+    .container {
+        display: block;
+    }
+    #cariere a:link {
+        color: var(--culoare-p);
+    }
+    a{
+        text-decoration: none;
+        color: var(--culoare-p);
+    }
+    a:link {
+        color: var(--culoare-p);
+    }
+   
+    nav {
+        display: none;
+    }
+    
+    body::after {
+        content: "Tufescu Mihai-Alin";
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 100px;
+        height: 2cm;
+        border: 4px double black;
+        opacity: 0.65;
+        font-size: 1.2em;
+        text-align: center;
+        padding-top: 0.7cm;
+    }
+    
+    @page {
+        margin-left: 2.0cm;
+        margin-right: 0.5cm;
+    }
+
+    @page:right {
+        margin-left: 0.5cm;
+        margin-right: 2.5cm;
+    }
+    
+    h1 {
+        page-break-after: always;
+    }
+    
+    footer {
+        page-break-before: always;
+    }
+}

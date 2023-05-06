@@ -1,0 +1,17 @@
+body {
+  --culoare-bg:#0B0C10;
+  background-color: var(--culoare-bg);
+  --spatiere-margine: 1%;
+  padding: var(--spatiere-margine);
+  margin: 0;
+}
+
+.logo-placeholder {
+  display: flex;
+}
+
+.logo-placeholder > img {
+  margin: 10px;
+  width: 5%;
+  height: 5%;
+}

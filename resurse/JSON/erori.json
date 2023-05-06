@@ -1,0 +1,53 @@
+{
+    "cale_baza": "resurse/imagini/eroare",
+    "eroare_default":{
+        "titlu":"Eroare !!!",
+        "text": "A survenit eroare.",
+        "imagine":"interzis.png"
+    },
+    "info_erori": [
+        {
+            "identificator":404,
+            "status":true,
+            "titlu":"404 - N-am, bre!",
+            "text": "Nu-i pe serverul ăsta, sorry, caută în altă parte!",
+            "imagine":"lupa.png"
+        },
+        {
+            "identificator":403,
+            "status":true,
+            "titlu":"403 - Da, tu ce cauți aici?!!",
+            "text": "Ai greșit ruta. Stânga-împrejur și pa!",
+            "imagine":"interzis.png"
+        },
+        
+        {
+            "identificator": 400,
+            "status": true,
+            "titlu": "400",
+            "text": "Pagina nu există! (URL greșit)",
+            "imagine": "interzis.png"
+        },
+        {
+            "identificator": 1,
+            "status": false,
+            "titlu": "Mentenanță",
+            "text": "Reveniți mai târziu!",
+            "imagine": "mentenanta.png"
+        },
+        {
+            "identificator": 2,
+            "status": false,
+            "titlu": "Mentenanță (Baza de date)",
+            "text": "Reveniți mai târziu!",
+            "imagine": "mentenanta.png"
+        },
+        {
+            "identificator": 3,
+            "status": false,
+            "titlu": "Date greșite",
+            "text": "Verificați datele introduse!",
+            "imagine": "interzis.png"
+        }
+    ]
+}
