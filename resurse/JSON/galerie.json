@@ -2,25 +2,35 @@
 	"cale_galerie":"imagini/galerie/",
 	"imagini": [
 		{
-			"fisier":"ellison.jpg",
-			"descriere":"Oracle",
+			"fisier":"python.jpg",
+			"descriere":"Curs Python complet",
 			"timp":"dimineata"
 		},
 		{
-			"fisier":"micu.jpg",
-			"descriere":"Geniul Barladului",
+			"fisier":"js.jpg",
+			"descriere":"Curs JavaScript",
 			"timp":"zi"
 			
 		},
 		{
-			"fisier":"gates.jpg",
-			"descriere":"Microsoft",
+			"fisier":"csharp.jpg",
+			"descriere":"Curs C# backend",
 			"timp":"noapte"
 		},
 		{
-			"fisier":"turing.jpg",
-			"descriere":"Enigma",
+			"fisier":"sql.jpg",
+			"descriere":"Curs SQL",
 			"timp":"dimineata"
+		},
+		{
+			"fisier":"php.jpg",
+			"descriere":"Curs PHP",
+			"timp":"noapte"
+		},
+		{
+			"fisier":"java.jpg",
+			"descriere":"Curs Java",
+			"timp":"noapte"
 		}
 	]
 }

@@ -2,7 +2,7 @@
 <html lang="ro">
     <head>
         <%- include("../fragmente/head.ejs") %>
-        <script src="index.js"></script>
+        <!-- <script src="index.js"></script> -->
         
     </head>
    
@@ -129,33 +129,19 @@
             <iframe width="853" height="480" name="ivideo" src="https://www.youtube.com/embed/S1w82YP1A3M" title="Programare pentru începători: Introducere" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
     </section>   
-    <section id="galerie-dinamica">
-        <div class="galerie-animata">
-            <div id="poza-animata>">
-                <img src="#">
-            </div>
-            <div id="poza-animata>">
-                <img src="#">
-            </div>
-            <div id="poza-animata>">
-                <img src="#">
-            </div>
-            <div id="poza-animata>">
-                <img src="#">
-            </div>
-            <div id="poza-animata>">
-                <img src="#">
-            </div>
-            <div id="poza-animata>">
-                <img src="#">
-            </div>
+    
+    <section id="galerie-statica">
+        <div>
+            <h3>Vezi demo-urile cursurilor noastre</h3>
+            <%- include('../fragmente/galerie_statica') %>
         </div>
     </section>
-    <section id="galerie-statica">
-        <%- include('../fragmente/galerie_statica') %>
-    </div> 
-</section>
-    
+    <section id="galerie-dinamica">
+        <div>
+            <h2>Parteneri care ne recomanda:</h2>
+            <%- include('../fragmente/galerie_dinamica') %>
+        </div>
+    </section>
 </main>
 <footer>
     <%- include('../fragmente/footer') %>

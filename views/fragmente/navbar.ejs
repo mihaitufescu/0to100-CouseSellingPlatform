@@ -1,4 +1,4 @@
-<nav class="navbar">
+<nav class="my-navbar">
     <label id="buton-meniu" for="ch-menu">
         <i class="fa-sharp fa-solid fa-bars fa-xl" style="color: #ffffff;"></i>
     </label>
@@ -13,11 +13,14 @@
                 </div>
         </li>
         <li>
-            <a href="#">Cursuri</a>
+            <a href="/cursuri">Cursuri</a>
             <ul class="submeniu">
-                <li><a href="#">Lista</a></li>
-                <li><a href="#">eLearning</a></li>
-                <li><a href="#">eTeaching</a></li>
+                <% for(let i=0; i< cat.length; i++){
+                    let link = cat[i].entry.toLowerCase().replace(/\s/g, "");
+                    %>
+                    <li><a href="/cursuri/<%- link %>"><%- cat[i].entry %></a></li>
+                <%
+                } %>
             </ul>
         </li>
         <li>

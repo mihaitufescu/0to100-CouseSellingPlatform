@@ -1,0 +1,49 @@
+.galerie-dinamica {
+  width: 400px;
+  height: 300px;
+  border: 1px solid black;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid black;
+  margin-bottom: 5rem;
+}
+
+.galerie-dinamica figcaption {
+  position: absolute;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.7);
+  width: 100%;
+  text-align: center;
+}
+
+.galerie-dinamica figure {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  margin: auto;
+}
+
+#derulant {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  position: absolute;
+  animation-name: gal1;
+  animation-direction: reverse;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 20s;
+}
+
+#derulant > * {
+  flex-shrink: 0;
+}
+
+@keyframes gal1 {
+  0% {
+    top: 0px;
+  }
+  90% {
+    top: -900px;
+  }
+}

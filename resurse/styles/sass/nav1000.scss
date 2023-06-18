@@ -1,52 +1,69 @@
-body{
-    --inaltime-meniu: 80px;
-    --latime-buton:120px;
-    --culoare-meniu: #1F2833;
-    --culoare-anchors : #45A29E;
-    --culoare-neutra: #C5C6C7;
-    --culoare-p: #F0F3FB;
+$inaltime-meniu: 80px;
+$latime-buton: 120px;
+$culoare-meniu: #1F2833;
+$culoare-anchors: #45A29E;
+$culoare-neutra: #C5C6C7;
+$culoare-p: #F0F3FB;
 
+.my-navbar {
+  width: calc(100vw - 1.1rem);
+  margin-top: -2%;
+  margin-left: -1%;
+  height: $inaltime-meniu;
+  background-color: $culoare-meniu;
+  position: sticky;
+  top: 0;
+  left: 0;
+  overflow: visible;
 }
-.navbar{
-    width: calc(100vw - 1.25rem);
-    margin-top: -2%;
-    margin-left: -1%;
-    height: var(--inaltime-meniu);
-    background-color: var(--culoare-meniu);
-    position: sticky;
-    top: 0;
-    left: 0;
-    overflow: visible;
+ul.meniu {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  height: $inaltime-meniu;
 }
-ul.meniu .casuta{
+ul.meniu li.singular{
+    height: $inaltime-meniu;
     display: inline-block;
-    position: relative;
-    transform: translateY(100%);
-    margin-left: 20%;
-}
-ul.meniu li,ul.meniu li a{
-    display: inline-block;
-    width : 100%;
-    font-size: 16px;
-}
-ul.meniu .acasa{
-    display: none;
-}
-ul.meniu li{
-    display:inline-block;
-    text-align: center;
     box-sizing: border-box;
-    height: var(--inaltime-meniu);
-    width: var(--latime-buton);
 }
-ul.submeniu li{
-    padding-top: 3%;
-    padding-bottom: 3%;
-    margin-left: -45%;
-    height: 50%;
-    background-color: var(--culoare-neutra);
-    border-bottom: 0px;
+ul.meniu li.singular:hover{
+    height: $inaltime-meniu;
+
+}
+ul.meniu .casuta {
+  display: inline-block;
+  position: relative;
+  transform: translateY(100%);
+  margin-left: 20%;
 }
 
+ul.meniu li,
+ul.meniu li a {
+  display: inline-block;
+  width: 100%;
+  font-size: 16px;
+}
 
+ul.meniu .acasa {
+  display: none;
+}
 
+ul.meniu li {
+  display: inline-block;
+  text-align: center;
+  box-sizing: border-box;
+  height: $inaltime-meniu;
+  width: $latime-buton;
+}
+
+ul.submeniu li {
+  padding-top: 3%;
+  padding-bottom: 3%;
+  margin-left: -6vh;
+  height: 50%;
+  background-color: $culoare-neutra;
+  border-bottom: 0px;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html  lang="ro">
+    <head>
+        <%- include("../fragmente/head") %>     
+        <link href="/resurse/css/curs.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+    <%- include("../fragmente/navbar") %>
+
+    <main>
+        <section>
+            <h2>Pagină curs</h2>
+                <article id="art-curs">
+                    <h3><span class="nume"><%- locals.curs.nume_curs %></span></h3>
+                    <p>Nume cursant: <span class="cursant"><%- locals.curs.nume_cursant %> </span></p>
+                    <p>Pret: <span class="pret"><%- locals.curs.pret %> </span></p>
+                    <p>Descriere: <span class="descriere"><%- locals.curs.descriere %> </span></p>
+                    <p>Categorie: <span class="categorie"><%- locals.curs.categorie_principala %> </span></p>
+                    <p>Complexitate: <span class="complexitate"><%- locals.curs.complexitate %> </span></p>
+                    <p>Numar ore: <span class="ore"><%- locals.curs.numar_ore %> </span></p>
+                    <p>Data lansare: <span class="categorie"><date><%- locals.curs.data_lansare %></date> </span></p>
+                    <p>Categorii secundare: <span class="categ_sec"><%- locals.curs.categorii_secundare %> </span></p>
+                    <figure class="imag-curs">
+                        <img  src="..<%-locals.curs.imagine %>" alt="[imagine <%- locals.curs.nume %>]" />
+                    </figure>    
+                </article>
+            
+        </section>
+    </main>
+
+    <%- include("../fragmente/footer") %>
+    </body>
+</html>

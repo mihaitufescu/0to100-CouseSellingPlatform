@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <%- include("../fragmente/head") %>
+    <link rel="stylesheet" href="/styles/cursuri.css" type="text/css" />
+    <script src="/js/cursuri.js"></script>
+
+</head>
+
+<body>
+    <%- include("../fragmente/navbar") %>
+
+    <main>
+        </br>
+        <div id="filtari">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filtrareModal">
+                Filtreza
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="filtrareModal" tabindex="-1" aria-labelledby="filtrareModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="filtrareModalLabel">Filtrare rezultate</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="btn-group-vertical">
+                                <label>
+                                    <p>Nume:</p> <input type="text" id="inp-nume">
+                                </label>
+                                <!--<label> Maxim calorii: <input type="number" id="inp-calorii" value="10000"></label>-->
+                                <div>
+                                    <p>Numar ore:</p>
+                                    <p><label>&lt; 20
+                                            <input id="i_rad1" class="rBtn" name="gr_rad" value="mic" type="radio" />
+                                        </label></p>
+                                    <p><label>20 &le; Ore &lt; 40
+                                            <input id="i_rad2" class="rBtn" name="gr_rad" value="mediu" type="radio" />
+                                        </label></p>
+                                    <p><label>40 &le; Ore
+                                            <input id="i_rad3" class="rBtn" name="gr_rad" value="max" type="radio" />
+                                        </label></p>
+                                    <label>
+                                        <p>Disponilitate:</p>
+                                        <select id="inp-disp">
+                                            <option id="sel-disp" selected value="true">da</option>
+                                            <option id="sel-indisp" selected value="false">nu</option>
+                                            <option id="sel-toate" selected value="all">toate</option>
+                                            <% for (let opt of locals.optiuni) { %>
+                                            <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
+                                            <% } %>
+                                        </select>
+                                    </label>
+                                </br>
+                                    <label>
+                                        <p>Categorie:</p>
+                                        <select id="inp-categorie">
+                                            <option id="sel-toate" selected value="all">toate</option>
+                                            <option id="sel-webdev" selected value="wd">Web Development</option>
+                                            <option id="sel-bd" selected value="bd">Baze de date</option>
+                                            <option id="sel-se" selected value="se">Software engineering</option>
+                                            <% for (let opt of locals.optiuni) { %>
+                                            <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
+                                            <% } %>
+                                        </select>
+                                    </label>
+                                    </br>
+                                </div>
+                                <div class="container">
+                                    <div class="row justify-content-start">
+                                        <div class="col-4">
+                                            <label><span id="infoRange"> <%- locals.pret_min %></span> <input
+                                                    type="range" id="inp-pret" value="89.99" min="89.99" max="199.99">
+                                                <span id="infoRange"><%-locals.pret_max %></span></label>
+                                        </div>
+                                        <div class="col-4">
+                                            <input type="text" id="valoarePret" value="">
+                                        </div>
+                                    </div>
+                                    <p>
+                                        <button id="resetare">Reseteaza</button><br />
+                                        <button id="sortCrescNume">Sorteaza crescator dupa pret si nume</button>
+                                        <button id="sortDescrescNume">Sorteaza descrescator dupa pret si nume</button>
+                                    </p>
+
+                                    <p id="p-suma">Apăsați Alt+"c" pentru suma preturilor cursurilor afișate. </p>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Inchide</button>
+                                <button type="button" class="btn btn-secondary" id="filtrare">Salveaza</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section id="cursuri">
+                <h2>Cursuri</h2>
+                <div class="grid-cursuri">
+                    <% for( let curs of locals.cursuri) { %>
+                    <article class="curs">
+                        <h3 class="nume"><a href="/curs/<%-curs.id %>">Nume: <span
+                                    class="val-nume"><%- curs.nume_curs%></span></a></h3>
+                        <!-- <h3 class="nume">Nume: <a href="/curs/<%-curs.id %>" ><span class="val-nume"><%- curs.nume%></span></a></h3> -->
+                        <div class="info-curs">
+                            <p class="pret">Pret: <span class="val-pret"><%- curs.pret%></span></p>
+                            <p class="nume_cursant">Nume cursant: <span
+                                    class="val-nume-cursant"><%- curs.nume_cursant%></span></p>
+                            <p class="data">Data lansare: <span class="val-data"><%- curs.data_lansare%></span></p>
+                            <p class="disponibil">Disponibilitate: <span
+                                    class="val-disponibil"><%- curs.disponibil%></span>
+                            </p>
+                        </div>
+                        <p class="categorie">Categorie:<span
+                                class="val-categorie"><%- curs.categorie_principala%></span>
+                        </p>
+                        <p class="numar_ore">Numar ore:<span class="val-ore"><%- curs.numar_ore%></span></p>
+                        <p class="subcategorie">Subcategorii:<span
+                                class="val-subcategorie"><%- curs.categorii_secundare%></span></p>
+                        <figure>
+                            <a href="/curs/<%-curs.id %>"><img src="..<%- curs.imagine %>"
+                                    alt="[imagine <%- curs.nume %>]" /></a>
+                        </figure>
+                        <label class="selecteaza-cos">
+                            Selectează:<br />
+                            <input type="checkbox" class="select-cos" value="<%-curs.id %>" autocomplete="off">
+                        </label>
+                    </article>
+                    <% }%>
+                </div>
+            </section>
+    </main>
+
+    <%- include("../fragmente/footer") %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -11,6 +11,10 @@ body{
     padding: var(--spatiere-margine);
     margin: 0;
 }
+a{
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+}
 .placeholder > img{
     margin: 5px;
     width: 5%;
@@ -135,7 +139,7 @@ a:visited {
 #prezentare{
     display: grid;
     grid-area: z-prezentare;
-    width: 50%;
+    width: 40%;
     justify-content: center;
     margin: auto;
 }
@@ -188,6 +192,8 @@ summary{
 #place-animated-icon{
     padding-top: 5%;
     margin-bottom: -25%;
+    z-index: 2;
+
 }
 #content-footer *{
     color:var(--culoare-neutra);
@@ -197,19 +203,34 @@ summary{
     align-content: center;
     align-items: flex-start;
 }
+#galerie-statica{
+    grid-area: z-galerie-statica;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2%; 
+}
+#galerie-dinamica{
+    grid-area: z-galerie-dinamica;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2%; 
+}
 #grid{
     display: grid;
     width: 100%;
     --grid-cell-size : 50px;
     grid-template-columns: auto auto auto auto;
-    grid-template-rows: auto auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto auto;
     grid-template-areas: "z-home-info z-home-info z-home-info z-home-info"
                          "z-home-info z-home-info z-home-info z-home-info"
                          "z-calendar z-tabel z-tabel z-faq"
                          "z-utilizatori z-tabel z-tabel z-faq"
                          "z-utilizatori z-date z-date z-cariere"
                          "z-prezentare z-prezentare z-prezentare z-prezentare"
-                         "z-galerie-a z-galerie-a z-galerie-a z-galerie-a";
+                         "z-galerie-statica z-galerie-statica z-galerie-statica z-galerie-statica"
+                         "z-galerie-dinamica z-galerie-dinamica z-galerie-dinamica z-galerie-dinamica";
     align-items: center;
     column-gap: 10%;
     justify-content: center;
@@ -284,15 +305,24 @@ summary{
         color: var(--culoare-heading);
         width: 100%;
     }
+    p{
+        font-size: calc(var(--size-p) - 10px);
+    }
     #prezentare{
+        display: none;
+    }
+    #main-tabel{
         display: none;
     }
     #home{
         display: grid;
         margin: auto;
         justify-content: center;
-        width: 50%;
+        width: 60%;
         box-sizing: border-box;
+    }
+    #place-animated-icon{
+        display: none;
     }
     #grid{
         display: grid;
@@ -307,7 +337,9 @@ summary{
                              "z-faq"
                              "z-date"
                              "z-cariere"
-                             "z-prezentare";
+                             "z-prezentare"
+                             "z-galerie-statica"
+                             "z-galerie-dinamica";
         align-items: center;
         justify-content: center;
     }
@@ -327,98 +359,74 @@ summary{
 }
 
 @media print {
-    #absolut{
-		position: absolute;
-		display: inline-block;
-		top:100%;
-		width:20px;
-		height:20px;
-		right:0;
-		overflow: visible;
-	}
-	#absolut::after{
-		content:"Element poziționat absolut pe a doua pagină.Pentru a vedea stilul de printare apăsați Ctrl+P.";
-		position: absolute;
-		font-size:10px;
-		right:0;
-		border:5px double black;
-		width:200px;
-		height:35px;
-		display: inline-block;
-	}
-    #grid{
-        font-size: 10px;
-		box-sizing:border-box;
-		page-break-before:always;
-		background-color: white;
-		display:block;
-    }
     #banner {
-        display: block;
-        width: 70%;
-        margin: 0 auto;
-        border: 2px dotted black;
-        padding: 10px;
-        text-align:center;
+      display: block;
+      width: 70%;
+      margin: 0 auto;
+      border: 4px inset black;
+      padding: 10px;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
     }
+  
+    img,
+    video,
+    iframe,
+    .container-iframe,
+    [href="#top"],
+    [href="#"],
+    [role=banner],
+    [role=navigation] {
+      display: none !important;
+    }
+  
+    #grid {
+      display: block;
+      box-sizing: border-box;
+    }
+  
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  
     h1 {
-        page-break-after: always;
-        margin-top: 50%;
-        text-align:center;
-        margin-left:1cm;
-        
+      page-break-after: always;
+      text-align: center;
+      margin-top: 0;
     }
-    img, video, iframe, .container-iframe, [href="#top"], [href="#"], [role="banner"], [role="navigation"] {
-        display: none !important;
-    }
-    
-    .container {
-        display: block;
-    }
-    #cariere a:link {
-        color: var(--culoare-p);
-    }
-    a{
-        text-decoration: none;
-        color: var(--culoare-p);
-    }
-    a:link {
-        color: var(--culoare-p);
-    }
-   
+  
     nav {
-        display: none;
+      display: none;
     }
-    
+  
     body::after {
-        content: "Tufescu Mihai-Alin";
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        width: 100px;
-        height: 2cm;
-        border: 4px double black;
-        opacity: 0.65;
-        font-size: 1.2em;
-        text-align: center;
-        padding-top: 0.7cm;
+      content: "Tufescu Mihai-Alin";
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 4cm;
+      height: 1cm;
+      border: 3px solid black;
+      opacity: 0.4;
+      font-weight: bold;
+      text-align: center;
+      padding-top: 0.2cm;
+      z-index: 9999;
     }
-    
+  
     @page {
-        margin-left: 2.0cm;
-        margin-right: 0.5cm;
+      margin-left: 3cm;
+      margin-right: 1cm;
     }
-
+  
     @page:right {
-        margin-left: 0.5cm;
-        margin-right: 2.5cm;
+      margin-left: 1cm;
+      margin-right: 3cm;
     }
-    
-    h1 {
-        page-break-after: always;
-    }
-    
-    footer {
-        page-break-before: always;
-    }
-}
+  }
+  

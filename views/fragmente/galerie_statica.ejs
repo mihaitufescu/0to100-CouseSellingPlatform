@@ -13,14 +13,21 @@
     }
     else
         incadrare = "zi";
-    
+    var counter = 0;
     console.log(incadrare);
      for (let img of locals.imagini)
      {
-        if(img.timp === incadrare)
+        counter += 1;
+        if(img.timp === incadrare && counter <=11)
         { 
         %>
-        <img src="<%- img.fisier %>"/>
+        <div class="grid-item">
+                <figure id="grid-pic">
+                    <img src="<%- img.fisier %>"/>
+                    <figcaption><%- img.descriere %></figcaption> 
+                </figure>
+            </div>
+        
         <%
         } 
     }%>

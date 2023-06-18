@@ -1,0 +1,104 @@
+main {
+  --padd-main:1rem;
+  padding-left: var(--padd-main);
+  padding-right: var(--padd-main);
+}
+
+.modal-content {
+  background-color: #1F2833;
+}
+
+#valoarePret {
+  width: 80px;
+  transform: translateY(50%);
+}
+
+.grid-cursuri {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+.grid-cursuri .cursuri {
+  border-radius: 2rem;
+  box-shadow: 0px 0px 0.8rem 0.3rem grey;
+  overflow: hidden;
+}
+
+.grid-cursuri .cursuri h3 {
+  background-color: green;
+  text-align: center;
+  margin-top: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.grid-cursuri .cursuri h3 a {
+  color: black;
+}
+
+.grid-cursuri .cursuri h3 a:hover {
+  color: white;
+}
+
+.grid-cursuri .cursuri figure {
+  text-align: center;
+}
+
+.grid-produse .produs figure img {
+  border: 1px solid grey;
+  width: 50%;
+  height: 50%;
+}
+
+.grid-produse img {
+  height: 10%;
+  weight: 10%;
+}
+
+.grid-cursuri .cursuri .info-prod {
+  display: flex;
+  background-color: green;
+}
+
+.grid-cursuri .cursuri .info-prod p {
+  width: 30%;
+  text-align: center;
+  font-weight: bold;
+}
+
+.grid-cursuri .cursuri p.categorie {
+  text-align: center;
+  font-weight: bold;
+}
+
+.info-cursuri {
+  background-color: var(--cl-marcare);
+  padding: 0.2rem;
+  box-shadow: 0px 0px 0.5rem 0.15rem grey;
+}
+
+label span {
+  color: white;
+}
+
+.cursuri {
+  position: relative;
+}
+
+.selecteaza-cos {
+  display: inline-block;
+  background-color: green;
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  padding: 0.3rem;
+  border: 1px solid transparent;
+}
+
+.selecteaza-cos:hover {
+  background-color: green;
+  border: 1px solid green;
+}

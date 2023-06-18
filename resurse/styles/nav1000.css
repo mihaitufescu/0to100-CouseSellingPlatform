@@ -1,22 +1,32 @@
-body {
-  --inaltime-meniu: 80px;
-  --latime-buton:120px;
-  --culoare-meniu: #1F2833;
-  --culoare-anchors: #45A29E;
-  --culoare-neutra: #C5C6C7;
-  --culoare-p: #F0F3FB;
-}
-
-.navbar {
-  width: calc(100vw - 1.25rem);
+.my-navbar {
+  width: calc(100vw - 1.1rem);
   margin-top: -2%;
   margin-left: -1%;
-  height: var(--inaltime-meniu);
-  background-color: var(--culoare-meniu);
+  height: 80px;
+  background-color: #1F2833;
   position: sticky;
   top: 0;
   left: 0;
   overflow: visible;
+}
+
+ul.meniu {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  height: 80px;
+}
+
+ul.meniu li.singular {
+  height: 80px;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+ul.meniu li.singular:hover {
+  height: 80px;
 }
 
 ul.meniu .casuta {
@@ -26,7 +36,8 @@ ul.meniu .casuta {
   margin-left: 20%;
 }
 
-ul.meniu li, ul.meniu li a {
+ul.meniu li,
+ul.meniu li a {
   display: inline-block;
   width: 100%;
   font-size: 16px;
@@ -40,15 +51,15 @@ ul.meniu li {
   display: inline-block;
   text-align: center;
   box-sizing: border-box;
-  height: var(--inaltime-meniu);
-  width: var(--latime-buton);
+  height: 80px;
+  width: 120px;
 }
 
 ul.submeniu li {
   padding-top: 3%;
   padding-bottom: 3%;
-  margin-left: -45%;
+  margin-left: -6vh;
   height: 50%;
-  background-color: var(--culoare-neutra);
+  background-color: #C5C6C7;
   border-bottom: 0px;
 }

@@ -1,0 +1,88 @@
+body{
+    --inaltime-meniu: 70px;
+    --latime-buton:100px;
+    --culoare-meniu: #1F2833;
+    --culoare-anchors : #45A29E;
+    --culoare-neutra: #C5C6C7;
+    --culoare-p: #F0F3FB;
+    --font-size: 16px;
+    overflow-x: hidden;
+
+}
+.navbar{
+    width: 105%;
+}
+#buton-meniu{
+    display: inline-block;
+    text-align: left;
+    box-sizing: border-box;
+    vertical-align: middle;
+    height: var(--inaltime-meniu);
+    width: 95%;
+    margin-left: 5%;
+}
+ul.meniu{
+    display: none;
+}
+ul.meniu li{
+    width: calc(100vw - 1.2vw);
+}
+#buton-meniu>i{
+    vertical-align: middle;
+    margin: 0 auto;
+    margin-top: calc(var(--inaltime-meniu)/2);
+}
+#ch-menu{
+    transform: scale(0,1);
+    transform-origin: left;
+}
+#ch-menu:checked + ul.meniu{
+    display: block;
+    transform: scale(1,1);
+    animation: animatie-meniu 0.5s linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+
+
+}
+ul.meniu .acasa{
+    display: none;
+}
+
+ul.meniu .casuta{
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    text-align: center;
+    width: var(--latime-buton);
+    padding-left: 5vh;
+    margin: 0 auto;
+}
+ul.meniu li a{
+    font-size: var(--font-size);
+}
+.submeniu{
+    margin-top: 3%;
+}
+ul.submeniu{
+    height: fit-content;
+    width: var(--latime-buton);
+}
+
+@keyframes animatie-meniu{
+    0% {
+        opacity: 0;
+        rotate: 0deg;
+        transform: scale(1,0.5);
+        transform-origin: top left;
+
+    }
+    50% {
+        rotate: -90deg;
+    }
+    0% {
+        opacity: 1;
+        rotate: -180deg;
+        transform: scale(1,1);
+    }
+}

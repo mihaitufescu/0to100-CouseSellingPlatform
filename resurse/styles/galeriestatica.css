@@ -1,32 +1,96 @@
-#galerie-statica {
-  padding-left: var(--padding-intern);
-  padding-right: var(--padding-intern);
-}
-
-#grid-galerie {
-  /*display:grid; */
+#galerie-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-row-gap: 0.5em;
-  grid-column-gap: 0.5em;
-  counter-reset: nrimag 3; /* nrimag=3 */
+  grid-gap: 0.5em;
+  justify-content: center;
+  align-items: center;
 }
 
-#grid-galerie img {
-  width: 100%;
+.grid-item {
+  grid-area: auto;
 }
 
-#grid-galerie figcaption {
+#grid-pic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  counter-increment: nrimag 2; /* nrimag+=2 */
 }
 
-#grid-galerie figcaption::before {
-  content: counter(nrimag, upper-alpha) ")";
+#grid-pic img {
+  max-width: 100%;
+  height: auto;
+  rotate: var(--angle);
 }
 
-@media screen and (max-width: 500px) {
-  #grid-galerie {
-    display: block;
+#grid-pic img:hover {
+  animation: efect-galerie 0.3s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  transform-origin: center center;
+}
+
+#grid-pic figcaption {
+  margin-top: 0.5em;
+  color: #F0F3FB;
+}
+
+@keyframes efect-galerie {
+  0% {
+    --angle: 0deg;
+    transform: scale(1);
+  }
+  25% {
+    --angle: 90deg;
+    transform: scale(1.1);
+  }
+  50% {
+    --angle: 180deg;
+    transform: scale(1.2);
+  }
+  75% {
+    --angle: 270deg;
+    transform: scale(1.3);
+  }
+  100% {
+    --angle: 360deg;
+    transform: scale(1.5);
+  }
+}
+@media screen and (max-width: 1000px) and (min-width: 751px) {
+  #galerie-grid {
+    display: grid;
+    grid-template-rows: auto;
+    max-width: 100vw; /* Set the maximum width to the screen size */
+    grid-gap: 10px; /* Adjust the gap between grid items */
+  }
+  #galerie-grid > .grid-item:nth-child(3n+1),
+  #galerie-grid > .grid-item:nth-child(3n+2) {
+    grid-column: span 2; /* First row: 1st picture and 2nd picture take 2 fractions */
+  }
+  #galerie-grid > .grid-item:nth-child(3n+3) {
+    grid-column: span 3; /* Second row: 1fr gap, 2fr picture, 1fr gap */
+  }
+}
+@media screen and (max-width: 750px) {
+  #galerie-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 0.2em;
+    justify-content: center;
+    align-items: center;
+  }
+  .grid-item {
+    grid-area: auto;
+  }
+  #grid-pic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  #grid-pic img {
+    max-width: 100%;
+    height: auto;
   }
 }

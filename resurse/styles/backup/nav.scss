@@ -1,23 +1,14 @@
-body {
-  --inaltime-meniu: 100px;
-  --latime-buton:150px;
-  --culoare-meniu: #1F2833;
-  --culoare-anchors: #45A29E;
-  --culoare-neutra: #C5C6C7;
-  --culoare-p: #F0F3FB;
-  --font-size: 21px;
-}
-
-.navbar {
+.my-navbar {
   width: calc(100vw - 1.1rem);
   margin-top: -2%;
   margin-left: -1%;
-  height: var(--inaltime-meniu);
-  background-color: var(--culoare-meniu);
+  height: 100px;
+  background-color: #1F2833;
   position: sticky;
   top: 0;
   left: 0;
   overflow: visible;
+  z-index: 1;
 }
 
 #buton-meniu, #ch-menu {
@@ -26,23 +17,23 @@ body {
 
 [class^=fa] {
   position: relative;
-  margin-right: 90px;
-  transform: translateY(-125%);
+  margin-right: 12vh;
+  transform: translateY(-155%);
 }
 
 ul.meniu .casuta {
   display: inline-block;
 }
 
-.navbar a {
-  color: var(--culoare-p);
+.my-navbar a {
+  color: #F0F3FB;
 }
 
-.navbar ul {
+.my-navbar ul {
   list-style-type: none;
 }
 
-.navbar li {
+.my-navbar li {
   text-decoration: none;
   padding-top: 2.5%;
 }
@@ -58,13 +49,13 @@ ul.meniu {
   flex-wrap: wrap;
   padding: 0;
   margin: 0;
-  height: var(--inaltime-meniu);
+  height: 100px;
 }
 
 ul.meniu > li {
   flex-grow: 0;
   flex-shrink: 0;
-  flex-basis: var(--latime-buton);
+  flex-basis: 150px;
 }
 
 ul.meniu ul {
@@ -81,39 +72,39 @@ ul.meniu li:hover ul {
 
 ul.meniu li {
   display: block;
-  background-color: var(--culoare-meniu);
+  background-color: #1F2833;
   text-align: center;
   box-sizing: border-box;
-  height: var(--inaltime-meniu);
-  width: var(--latime-buton);
+  height: 100px;
+  width: 150px;
 }
 
 @keyframes rotate {
   0% {
-    --angle:90deg;
+    --angle: 90deg;
   }
   25% {
-    --angle:135deg;
+    --angle: 135deg;
   }
   50% {
-    --angle:180deg;
+    --angle: 180deg;
   }
   75% {
-    --angle:225deg;
+    --angle: 225deg;
   }
   100% {
-    --angle:360deg;
+    --angle: 360deg;
   }
 }
 ul.meniu li div, ul.meniu li a {
   display: inline-block;
   width: 100%;
-  font-size: var(--font-size);
+  font-size: 21px;
   padding-right: 1%;
 }
 
 .submeniu {
-  margin-top: 15%;
+  margin-top: 20%;
 }
 
 ul.submeniu {
@@ -123,14 +114,14 @@ ul.submeniu {
 ul.submeniu li {
   padding-top: 5%;
   padding-bottom: 3%;
-  margin-left: -45%;
+  margin-left: -5vh;
   height: 50%;
-  background-color: var(--culoare-neutra);
+  background-color: #C5C6C7;
   border-bottom: 0px;
 }
 
 ul.submeniu li:hover {
-  background-color: var(--culoare-anchors);
+  background-color: #45A29E;
 }
 
 ul.submeniu li a {
@@ -143,9 +134,9 @@ ul.submeniu li a {
     display: inline-block;
     text-align: center;
     box-sizing: border-box;
-    height: var(--inaltime-meniu);
-    width: var(--latime-buton);
-    border-bottom: 5px solid var(--culoare-meniu);
+    height: 100px;
+    width: 150px;
+    border-bottom: 5px solid #1F2833;
     animation: rotate 3s infinite ease-in;
   }
   ul.meniu li.singular:hover {
@@ -153,11 +144,11 @@ ul.submeniu li a {
     display: inline-block;
     text-align: center;
     box-sizing: border-box;
-    height: var(--inaltime-meniu);
-    width: var(--latime-buton);
+    height: 100px;
+    width: 150px;
     border-bottom: 5px solid transparent;
     border-image-slice: 1;
-    border-image-source: linear-gradient(var(--angle), var(--culoare-neutra), var(--culoare-meniu));
+    border-image-source: linear-gradient(var(--angle), #C5C6C7, #1F2833);
     animation: rotate 2s infinite ease-in;
   }
 }
