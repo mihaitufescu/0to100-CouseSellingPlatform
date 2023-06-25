@@ -2,7 +2,7 @@ window.onload = function () {
     var myModal = document.getElementById('filtrareModal');
     var myInput = document.getElementsByClassName('btn-group-vertical');
     myModal.addEventListener('shown.bs.modal', function () {
-        myInput.focus();
+        // myInput.focus();
     });
     document.getElementById('filtrare').onclick = function () {
         let denumireCurs = document.getElementById('inp-nume').value.toLowerCase();
@@ -44,6 +44,22 @@ window.onload = function () {
                 c1 = (denumire.toUpperCase().includes(denumireCurs.toUpperCase()));
             } else
                 c1 = true;
+
+            if(c1!=true){
+                let descriere = curs.getElementsByClassName('val-descriere')[0].innerHTML;
+                const keywordsArr = denumireCurs.split(",");
+                console.log(keywordsArr);
+                for(let i=0; i< keywordsArr.length; i++){
+                    console.log(keywordsArr[i] + ' ' + descriere);
+                    if(descriere.toUpperCase().includes(keywordsArr[i].toUpperCase()))
+                    {
+                        c1 = true;
+                        console.log(c1);
+                        break;
+                    }
+                }
+            }
+            console.log(c1);
 
             let c2;
             if (curs.getElementsByClassName('val-disponibil')[0].innerHTML === disponibil || disponibil === 'all') {
@@ -128,13 +144,34 @@ window.onload = function () {
             curs.style.display = 'block';
         }
     };
-    document.getElementById('sortCrescNume').onclick = function (){
-
-    }
 
     document.getElementById('inp-pret').onchange = function () {
 
         document.getElementById('valoarePret').value = document.getElementById('inp-pret').value;
     }
+    function sortare(mod) {
+        let curs = document.getElementsByClassName('curs');
+        var v_curs = Array.from(curs);
+        v_curs.sort(function (a, b) {
+            let pret1 = parseFloat(a.getElementsByClassName("val-pret")[0].innerHTML);
+            let pret2 = parseFloat(b.getElementsByClassName("val-pret")[0].innerHTML);
+            if (pret1 == pret2) {
+                let nume_a = a.getElementsByClassName("val-nume")[0].innerHTML;
+                let nume_b = b.getElementsByClassName("val-nume")[0].innerHTML;
+                return mod * nume_a.localeCompare(nume_b);
+            }
+            return mod * (pret1 - pret2);
+        });
+        for (let curs of v_curs) {
+            curs.parentElement.appendChild(curs);
+        }
+    }
+
+    document.getElementById("sortCrescNume").onclick = function () {
+        sortare(1);
+    };
+    document.getElementById("sortDescrescNume").onclick = function () {
+        sortare(-1);
+    };
 
 }

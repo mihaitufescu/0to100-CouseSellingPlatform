@@ -14,7 +14,8 @@
     <main>
         </br>
         <div id="filtari">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filtrareModal">
+            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal"
+                data-bs-target="#filtrareModal">
                 Filtreza
             </button>
 
@@ -55,7 +56,7 @@
                                             <% } %>
                                         </select>
                                     </label>
-                                </br>
+                                    </br>
                                     <label>
                                         <p>Categorie:</p>
                                         <select id="inp-categorie">
@@ -74,7 +75,8 @@
                                     <div class="row justify-content-start">
                                         <div class="col-4">
                                             <label><span id="infoRange"> <%- locals.pret_min %></span> <input
-                                                    type="range" id="inp-pret" value="89.99" min="89.99" max="199.99">
+                                                    type="range" id="inp-pret" value="89.99" min=<%- locals.pret_min %>
+                                                    max=<%-locals.pret_max %>>
                                                 <span id="infoRange"><%-locals.pret_max %></span></label>
                                         </div>
                                         <div class="col-4">
@@ -105,11 +107,10 @@
                     <article class="curs">
                         <h3 class="nume"><a href="/curs/<%-curs.id %>">Nume: <span
                                     class="val-nume"><%- curs.nume_curs%></span></a></h3>
-                        <!-- <h3 class="nume">Nume: <a href="/curs/<%-curs.id %>" ><span class="val-nume"><%- curs.nume%></span></a></h3> -->
                         <div class="info-curs">
                             <p class="pret">Pret: <span class="val-pret"><%- curs.pret%></span></p>
-                            <p class="nume_cursant">Nume cursant: <span
-                                    class="val-nume-cursant"><%- curs.nume_cursant%></span></p>
+                            <p class="descriere">Descriere: <span
+                                    class="val-descriere"><%- curs.descriere%></span></p>
                             <p class="data">Data lansare: <span class="val-data"><%- curs.data_lansare%></span></p>
                             <p class="disponibil">Disponibilitate: <span
                                     class="val-disponibil"><%- curs.disponibil%></span>
@@ -125,10 +126,10 @@
                             <a href="/curs/<%-curs.id %>"><img src="..<%- curs.imagine %>"
                                     alt="[imagine <%- curs.nume %>]" /></a>
                         </figure>
-                        <label class="selecteaza-cos">
+                        <!-- <label class="selecteaza-cos">
                             Selectează:<br />
                             <input type="checkbox" class="select-cos" value="<%-curs.id %>" autocomplete="off">
-                        </label>
+                        </label> -->
                     </article>
                     <% }%>
                 </div>

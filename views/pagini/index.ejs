@@ -2,7 +2,7 @@
 <html lang="ro">
     <head>
         <%- include("../fragmente/head.ejs") %>
-        <!-- <script src="index.js"></script> -->
+        <script src="/js/galanimatie.js"></script>
         
     </head>
    
@@ -20,7 +20,11 @@
     <section id="home">
         <h2> Invata tehnologii noi de programare acum! Obtinerea unui job in IT nu a fost niciodata mai usor </h2>
         <p> Inscrie-te in programul nostru pentru ati extinde posibilitatile de angajare. 90% din angajatii nostri au gasit un <i lang="en">job</i> in IT.</p>
-        <q> Un angajator complet! - Unknown Recruitment</q>
+        <div id="container">
+            <q id="quote"> Un angajator complet! - Unknown Recruitment</q>
+            <q id="quote-reflect"> Un angajator complet! - Unknown Recruitment</q>
+        </div>
+    </br>
         <figure>
             <picture>
                 <source media="(max-width: 600px)" srcset="/imagini/corporate.jpg">
@@ -28,7 +32,7 @@
                 <source media="(min-width: 1001px)" srcset="/imagini/corporate.jpg">
                 <img src="/imagini/corporate.jpg" alt="Coding">  
             </picture>
-            <figcaption>Cod</figcaption>
+            <figcaption>...</figcaption>
         </figure>
     </section>
     <section id="main-tabel">

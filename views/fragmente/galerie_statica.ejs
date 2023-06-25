@@ -17,11 +17,10 @@
     console.log(incadrare);
      for (let img of locals.imagini)
      {
-        counter += 1;
         if(img.timp === incadrare && counter <=11)
         { 
         %>
-        <div class="grid-item">
+        <div class="grid-item" id="<%-"grid-item"+counter%>">
                 <figure id="grid-pic">
                     <img src="<%- img.fisier %>"/>
                     <figcaption><%- img.descriere %></figcaption> 
@@ -29,6 +28,10 @@
             </div>
         
         <%
+        counter += 1;
         } 
+        if(counter>2)
+            counter = 0;
     }%>
 </div>
+<div id = "gol"></div>

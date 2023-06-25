@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <%- include("../fragmente/head") %>
+    <script src="/js/carusel_certificate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <%- include("../fragmente/navbar") %>
+
+    <main>
+        </br>
+        <section>
+            <h2>Despre certificatele noastre</h2>
+            <article id="certificat-info">
+                <p>Platforma noastra elibereaza certificate acreditate la nivel national. Alatura-te noua si inscrie-te
+                    in oferta noastra!</p>
+            </article>
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width: 50vw; margin: 0 auto;">
+                <ol class="carousel-indicators">
+                    <% for (let i = 0; i < 5; i++) { %>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="<%= i %>" class="<%= i === 0 ? 'active' : '' %>"></li>
+                    <% } %>
+                </ol>
+                <div class="carousel-inner">
+                    <% for (let i = 0; i < 5; i++) { %>
+                        <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+                            <% if (locals.imagini[randomIndex[i]]) { %>
+                                <img class="d-block w-100" src="..\<%- locals.imagini[randomIndex[i]].fisier %>" alt="Slide <%= i + 1 %>">
+                                <p><%- locals.imagini[randomIndex[i]].descriere %></p>
+                            <% } %>
+                        </div>
+                    <% } %>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            
+        </section>
+    </main>
+
+    <%- include("../fragmente/footer") %>
+
+</body>
+
+</html>

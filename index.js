@@ -5,9 +5,15 @@ const path = require("path");
 const port = 8080;
 const app = express();
 const sass = require("sass");
+const formidable = require("formidable");
+const AccesBD = require("./module_proprii/accesbd.js")
+const session = require('express-session');
+const Drepturi = require("./module_proprii/drepturi.js");
+
 const {
     Client
 } = require("pg");
+
 var client = new Client({
     database: "postgres",
     user: "mihai",
@@ -15,6 +21,11 @@ var client = new Client({
     host: "localhost",
     port: 5433
 });
+app.use(session({ // aici se creeaza proprietatea session a requestului (pot folosi req.session)
+    secret: 'abcdefg', //folosit de express session pentru criptarea id-ului de sesiune
+    resave: true,
+    saveUninitialized: false
+}));
 client.connect();
 const searchDate = '2023-06-05'; // The date you want to search
 obGlobal = {
@@ -139,7 +150,7 @@ app.get("/cursuri", function (req, res) {
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    afiseazaEroare(res,404);
+                    afiseazaEroare(res, 404);
                 });
         }
 
@@ -209,7 +220,25 @@ app.get(["/", "/index", "/home"], function (req, res) {
         cat: res.locals.cat
     });
 });
-
+app.get("/certificate", function (req, res) {
+    function getRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    let randomNumbers = [];
+    while (randomNumbers.length < 5) {
+        let randomNumber = getRandomNumber(0, 5);
+        if (!randomNumbers.includes(randomNumber)) {
+            randomNumbers.push(randomNumber);
+        }
+    }
+    console.log(randomNumbers);
+    res.render('pagini/certificate', {
+        ip: req.ip,
+        imagini: obGlobal.obImagini.imagini,
+        randomIndex: randomNumbers,
+        cat: res.locals.cat
+    });
+});
 app.get("/*.ejs", function (req, res) {
     afiseazaEroare(res, 400);
 });

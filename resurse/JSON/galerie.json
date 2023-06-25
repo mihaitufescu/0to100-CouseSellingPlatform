@@ -4,7 +4,7 @@
 		{
 			"fisier":"python.jpg",
 			"descriere":"Curs Python complet",
-			"timp":"dimineata"
+			"timp":"zi"
 		},
 		{
 			"fisier":"js.jpg",
@@ -15,7 +15,7 @@
 		{
 			"fisier":"csharp.jpg",
 			"descriere":"Curs C# backend",
-			"timp":"noapte"
+			"timp":"zi"
 		},
 		{
 			"fisier":"sql.jpg",
