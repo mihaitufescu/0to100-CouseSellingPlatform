@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <%- include("../fragmente/head") %>
+</head>
+
+<body>
+    <%- include("../fragmente/navbar") %>
+
+    <main>
+        </br>
+        <h2>Salut, <%- utilizator.username %></h2>
+        <figure class="figure">
+            <figcaption class="figure-caption text-end">A caption for the above image.</figcaption>
+        </figure>
+        <div class="d-flex flex-column p-4">
+            <h4>Date personale:</h4>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>Username:</p>
+                        </td>
+                        <td>
+                            <p><%- utilizator.username %></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Nume:</p>
+                        </td>
+                        <td>
+                            <p><%- utilizator.nume %></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Prenume:</p>
+                        </td>
+                        <td>
+                            <p><%- utilizator.prenume %></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Adresa de email:</p>
+                        </td>
+                        <td>
+                            <p><%- utilizator.email %></p>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Culoare chat:</p>
+                        </td>
+                        <td>
+                            <p><%- utilizator.culoare_chat %></p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex flex-row bd-highlight mb-3">
+                <i class="fa-sharp fa-solid fa-pen-to-square fa-xl" data-bs-toggle="modal" data-bs-target="#editModal"
+                    style="color: #ffffff; transform: translateY(0%);"> </i>
+
+                <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content bg-dark">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="eeditModalLabel">Editare profil</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="form_edit_profile" method="post" class="date" action="/edit-profil"
+                                    enctype="multipart/form-data">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <p>Username:</p>
+                                                </td>
+                                                <td>
+                                                    <input type="hidden" name="username"
+                                                        value="<%- utilizator.username %>">
+                                                    <input class="form-control" style="color: #ffffff;" type="text"
+                                                        value="<%- utilizator.username %>" readonly>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p>Nume:</p>
+                                                </td>
+                                                <td>
+                                                    <input class="form-control" name="nume" type="text" id="numeEdit"
+                                                        value="">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p>Prenume:</p>
+                                                </td>
+                                                <td>
+                                                    <input class="form-control" name="prenume" type="text"
+                                                        id="prenumeEdit" value="">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p>Adresa de email:</p>
+                                                </td>
+                                                <td>
+                                                    <input class="form-control" name="email" type="email" id="emailEdit"
+                                                        value="">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p>Culoare chat:</p>
+                                                </td>
+                                                <td>
+                                                    <input class="form-control" name="culoare_chat" type="text" id="chatEdit"
+                                                        value="">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Inchide</button>
+                                <button class="btn btn-secondary btn-sm" type="submit">Salveaza</button>
+                                <label>Schimbarile vor fi modificate imediat. Username-ul nu poate sa fie
+                                    modificat</label>
+                            </div>
+                            </form>
+
+
+                        </div>
+                    </div>
+                </div>
+                <i class="fa-sharp fa-solid fa-trash fa-xl" style="color: #ffffff; transform: translateY(0%);"></i>
+            </div>
+
+
+
+        </div>
+
+    </main>
+
+    <%- include("../fragmente/footer") %>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</html>

@@ -127,20 +127,6 @@ a:visited {
   position: relative;
 }
 
-#quote-reflect {
-  position: absolute;
-  left: auto;
-  top: auto;
-  transform-origin: 0 0;
-  transform: rotateX(180deg) skew(-45deg) scaleY(0.5) translate(370px, -20px);
-  transition: ease-in 0.3;
-  opacity: 0.25;
-}
-
-#quote-reflect:hover {
-  transform: rotateX(180deg) skew(-45deg) scaleY(0.8) translate(370px, -20px);
-}
-
 #tabel_cursuri tr:nth-child(odd) td {
   padding: 3% 1%;
   border: 5px solid var(--culoare-secundara);
@@ -167,12 +153,6 @@ a:visited {
   width: 100%;
 }
 
-#calendar-evenimente {
-  display: grid;
-  grid-area: z-calendar;
-  justify-content: center;
-}
-
 #prezentare {
   display: grid;
   grid-area: z-prezentare;
@@ -183,11 +163,6 @@ a:visited {
 
 #prezentare h3 {
   text-align: center;
-}
-
-#lista-utilizatori {
-  grid-area: z-utilizatori;
-  justify-content: center;
 }
 
 summary {
@@ -220,18 +195,13 @@ summary {
   transform-origin: center;
 }
 
-#date-statistici {
-  grid-area: z-date;
-  justify-content: center;
-}
-
 #faq {
   grid-area: z-faq;
   justify-content: center;
 }
 
 #content-footer {
-  padding-top: 2%;
+  padding: 2%;
   grid-area: z-footer;
 }
 
@@ -259,21 +229,13 @@ summary {
   padding-top: 2%;
 }
 
-#galerie-dinamica {
-  grid-area: z-galerie-dinamica;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 2%;
-}
-
 #grid {
   display: grid;
   width: 100%;
   --grid-cell-size: 50px;
   grid-template-columns: auto auto auto auto;
-  grid-template-rows: auto auto auto auto auto auto auto;
-  grid-template-areas: "z-home-info z-home-info z-home-info z-home-info" "z-home-info z-home-info z-home-info z-home-info" "z-calendar z-tabel z-tabel z-faq" "z-utilizatori z-tabel z-tabel z-faq" "z-utilizatori z-date z-date z-cariere" "z-prezentare z-prezentare z-prezentare z-prezentare" "z-galerie-statica z-galerie-statica z-galerie-statica z-galerie-statica" "z-galerie-dinamica z-galerie-dinamica z-galerie-dinamica z-galerie-dinamica";
+  grid-template-rows: auto auto auto auto auto auto;
+  grid-template-areas: "z-home-info z-home-info z-home-info z-home-info" "z-home-info z-home-info z-home-info z-home-info" "z-tabel z-tabel z-tabel z-faq" "z-tabel z-tabel z-tabel z-cariere" "z-prezentare z-prezentare z-prezentare z-prezentare" "z-galerie-statica z-galerie-statica z-galerie-statica z-galerie-statica";
   align-items: center;
   column-gap: 10%;
   justify-content: center;
@@ -374,8 +336,8 @@ summary {
   #grid {
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
-    grid-template-areas: "z-home-info" "z-home-info" "z-tabel" "z-tabel" "z-calendar" "z-utilizatori" "z-faq" "z-date" "z-cariere" "z-prezentare" "z-galerie-statica" "z-galerie-dinamica";
+    grid-template-rows: auto auto auto auto auto auto auto auto;
+    grid-template-areas: "z-home-info" "z-home-info" "z-tabel" "z-tabel" "z-calendar" "z-faq" "z-cariere" "z-prezentare" "z-galerie-statica";
     align-items: center;
     justify-content: center;
   }
@@ -412,7 +374,7 @@ summary {
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
-    grid-template-areas: "z-home-info" "z-home-info" "z-tabel" "z-tabel" "z-calendar" "z-utilizatori" "z-faq" "z-date" "z-cariere" "z-prezentare" "z-galerie-statica" "z-galerie-dinamica";
+    grid-template-areas: "z-home-info" "z-home-info" "z-tabel" "z-tabel" "z-calendar" "z-faq" "z-cariere" "z-prezentare" "z-galerie-statica";
     align-items: center;
     justify-content: center;
   }

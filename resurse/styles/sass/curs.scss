@@ -20,8 +20,10 @@ h2{
 #art-curs p span{
     font-weight: normal;
 }
-#art-curs p:nth-of-type(even){
+#art-curs {
+    p:nth-of-type(even){
     background-color: var(--culoare-roz-inchis);
+}
 }
 #art-curs p:nth-of-type(odd){
     background-color: var(--cl-marcare);

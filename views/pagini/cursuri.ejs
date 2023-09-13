@@ -126,10 +126,12 @@
                             <a href="/curs/<%-curs.id %>"><img src="..<%- curs.imagine %>"
                                     alt="[imagine <%- curs.nume %>]" /></a>
                         </figure>
-                        <!-- <label class="selecteaza-cos">
-                            Selectează:<br />
-                            <input type="checkbox" class="select-cos" value="<%-curs.id %>" autocomplete="off">
-                        </label> -->
+                        
+                        <form class="addToCard" action="/checkoutProduct" method="post">
+                            <input type="hidden" name="cursId" value="<%-curs.id %>">
+                            <button type="submit" class="btn btn-dark">Adauga in cos</button>
+                        </form>
+                        
                     </article>
                     <% }%>
                 </div>

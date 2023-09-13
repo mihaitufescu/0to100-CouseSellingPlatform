@@ -5,12 +5,12 @@
     <input id="ch-menu" type="checkbox">
     <ul class="meniu">
         <li class="singular">
-                <div class="acasa">
-                    <a href="/home">Home</a>
-                </div>
-                <div class="casuta">
-                    <i class="fa-solid fa-house" style="color: #ffffff;"></i>
-                </div>
+            <div class="acasa">
+                <a href="/home">Home</a>
+            </div>
+            <div class="casuta">
+                <i class="fa-solid fa-house" style="color: #ffffff;"></i>
+            </div>
         </li>
         <li>
             <a href="/cursuri">Cursuri</a>
@@ -18,7 +18,7 @@
                 <% for(let i=0; i< cat.length; i++){
                     let link = cat[i].entry.toLowerCase().replace(/\s/g, "");
                     %>
-                    <li><a href="/cursuri/<%- link %>"><%- cat[i].entry %></a></li>
+                <li><a href="/cursuri/<%- link %>"><%- cat[i].entry %></a></li>
                 <%
                 } %>
             </ul>
@@ -31,7 +31,7 @@
             </ul>
         </li>
         <li>
-            <a href="#">Contul meu </a>
+            <a href="/profil">Contul meu </a>
             <ul class="submeniu">
                 <li><a href="#">Setari</a></li>
                 <li><a href="#">Statut</a></li>
@@ -39,6 +39,10 @@
             </ul>
         </li>
         <li class="singular"><a href="/autentificare">Autentificare</a></li>
+        <li class="singular">
+            <a href="/cos"> <i class="fa-solid fa-bag-shopping fa-xl" style="color: #ffffff; margin-left: 12vh;"></i> </a>
+        </li>
+        
     </ul>
-    
+
 </nav>

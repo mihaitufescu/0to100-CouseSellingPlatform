@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <%- include("../fragmente/head") %>     
+        <link href="/resurse/css/curs.css" type="text/css" rel="stylesheet" />
+        <script src="/js/calcprice.js"></script>
+    </head>
+    <body>
+    <%- include("../fragmente/navbar") %>
+
+    <main>
+        </br>
+        <section id="cos-description">
+            <h2>Cosul meu</h2>
+            <p>Nu uita sa trimiti comanda pentru a putea fi procesata. In scurt timp dupa confirmarea platii cursurile achizitionata vor aparea in dreptul paginii cursurile mele.</p>
+        </section>
+        <% if (!session.cart) { %>
+            <div class="card mb-3 bg-dark" style="width: 18rem;">
+                <img class="card-img-top" src="/imagini/eroare/faraproduse.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Cosul este gol</h5>
+                    <p class="card-text">Pentru a adauga produse intrati pe pagina cursurilor.</p>
+                    <a href="/cursuri" class="btn btn-primary">Ofera noastra de cursuri.</a>
+                </div>
+            </div>
+        <% } else { %>
+            <form id="orderForm" action="/placeOrder" method="post">
+                <% for (let produs of produse) { %>
+                    <div class="form-check">
+                        <input class="form-check-input"  type="checkbox" name="produsCos" id="produsCos<%-produs.id%>" data-pret="<%- produs.pret %>" checked>
+                        <label class="form-check-label" for="produsCos" style="color: white;">
+                            <%- produs.nume_curs %> - Pret: <%- produs.pret %>
+                        </label>
+                      </div>
+                <% } %>
+                <div class="form-group">
+                    <label for="fullName">Nume complet</label>
+                    <input type="text" class="form-control" id="fullName" name="fullName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Adresa de email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Numar de telefon</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="workNumber">Numar de telefon loc de munca (optional)</label>
+                    <input type="tel" class="form-control" id="workNumber" name="workNumber">
+                </div>
+                
+                <div class="form-group">
+                    <label for="workAddress">Adresa livrare la loc de munca (optional)</label>
+                    <input type="text" class="form-control" id="workAddress" name="workAddress">
+                </div>
+                <p id="totalPrice">Pret total: 0.00</p>
+                <button type="submit" class="btn btn-dark">Plaseaza comanda</button>
+            </form>
+        <% } %>
+        </br>
+    </main>
+
+    <%- include("../fragmente/footer") %>
+    </body>
+</html>

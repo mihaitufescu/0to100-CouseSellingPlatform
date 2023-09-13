@@ -76,13 +76,15 @@ class Utilizator{
                 email:this.email,
                 culoare_chat:this.culoare_chat,
                 cod:token,
-                poza:this.poza}
+                poza:this.poza,
+                confirmat_mail : 'false'
+            }
             }, function(err, rez){
             if(err)
                 console.log(err);
             else
-                utiliz.trimiteMail("Te-ai inregistrat cu succes","Username-ul tau este "+utiliz.username,
-            `<h1>Salut!</h1><p style='color:blue'>Username-ul tau este ${utiliz.username}.</p> <p><a href='http://${Utilizator.numeDomeniu}/cod/${utiliz.username}/${token}'>Click aici pentru confirmare</a></p>`,
+                utiliz.trimiteMail("Te-ai inregistrat in comuntatea 0to100","Username-ul tau este "+utiliz.username,
+            `<h4>Buna ${utiliz.username}!</h4><h1 style='color:blue'>Bine ai venit comunitatea 0to100.</h1> <p><a href='http://${Utilizator.numeDomeniu}/cod/${utiliz.username}/${token}'>Click aici pentru confirmare</a></p>`,
             )
         });
     }

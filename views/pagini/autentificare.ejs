@@ -10,7 +10,74 @@
 
     <main>
         </br>
-        
+        <h1>Fa parte din comunitatea noastra!</h1>
+        <section id="sign-in">
+            <div class="container d-flex align-items-center">
+                <h4>Completeaza urmatorul formular de autentificare aici:</h2>
+            </div>
+            <div class="container d-flex align-items-center">
+                <div class="row align-items-start">
+                    <form id="form_inreg" method="post" class="date" action="/autentificare"
+                        enctype="multipart/form-data">
+                        <p>
+                            <label label for="inp-username" class="form-label">
+                                Username: <input type="text" class="form-control" name="username" id="inp-username"
+                                    value="prof<%= Math.floor(Math.random()*100000) %>" required
+                                    pattern="[A-Za-z0-9#_./]+">
+                            </label>
+                        </p>
+                        <p>
+                            <label label for="inp-nume" class="form-label">
+                                Nume: <input type="text" class="form-control" name="nume" id="inp-nume"
+                                    value="Gogulescu" required>
+                            </label>
+                        </p>
+                        <p>
+                            <label label for="inp-prenume" class="form-label">
+                                Prenume: <input type="text" class="form-control" name="prenume" id="inp-prenume"
+                                    value="Gogu">
+                            </label>
+                        </p>
+                        <p>
+                            <label label for="parola" class="form-label">
+                                Parola: <input id="parl" class="form-control" type="password" required name="parola"
+                                    value="">
+                            </label>
+                        </p>
+                        <p id="p-reintrod">
+                            <label label for="rparola" class="form-label">
+                                Reintroduceti parola: <input id="rparl" class="form-control" required type="password"
+                                    name="rparola" value="">
+                            </label>
+                        </p>
+                        <p>
+                            <label for="inp-email" class="form-label">
+                                Email: <input type="text" class="form-control" name="email" id="inp-email" required
+                                    value="profprofprof007@gmail.com" size="50">
+                            </label>
+                        </p>
+                        <p>
+                            <label label for="sel-culoare" class="form-label">
+                                Culoare text chat: <select name="culoare_chat" id="sel-culoare">
+                                    <option value="red" selected>rosu</option>
+                                    <option value="green">verde</option>
+                                    <option value="blue">albastru</option>
+                                </select>
+                            </label>
+                        </p>
+                        <p>
+                            <label label for="poza" class="form-label">
+                                Poza: <input type="file" class="form-control" name="poza">
+                            </label>
+                        </p>
+                        <p>
+                            <input type="submit" class="btn btn-dark" value="Trimite">
+                            <input type="reset" class="btn btn-dark" value="Reseteaza">
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
 
     <%- include("../fragmente/footer") %>

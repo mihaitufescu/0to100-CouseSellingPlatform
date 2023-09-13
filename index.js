@@ -6,10 +6,13 @@ const port = 8080;
 const app = express();
 const sass = require("sass");
 const formidable = require("formidable");
-const AccesBD = require("./module_proprii/accesbd.js")
+const AccesBD = require("./module_proprii/accesbd.js");
 const session = require('express-session');
 const Drepturi = require("./module_proprii/drepturi.js");
-
+const bodyParser = require('body-parser');
+const {
+    Utilizator
+} = require("./module_proprii/utilizator.js");
 const {
     Client
 } = require("pg");
@@ -21,17 +24,18 @@ var client = new Client({
     host: "localhost",
     port: 5433
 });
-app.use(session({ // aici se creeaza proprietatea session a requestului (pot folosi req.session)
+app.use(session({ 
     secret: 'abcdefg', //folosit de express session pentru criptarea id-ului de sesiune
     resave: true,
     saveUninitialized: false
 }));
 client.connect();
-const searchDate = '2023-06-05'; // The date you want to search
+
 obGlobal = {
     obErori: null,
     obImagini: null,
-    cat: null
+    cat: null,
+    optiuniMeniu: []
 }
 
 const folders = ["temp", "temp1", "resurse/backup"];
@@ -104,6 +108,13 @@ app.set("views", "views/");
 app.use(
     express.static(__dirname + "/resurse")
 );
+
+app.use(
+    express.static(__dirname + "/poze_uploadate")
+);
+
+//Incarcare categorii dinamic
+app.use("/node_modules", express.static(__dirname + "/node_modules"));
 app.use(function (req, res, next) {
     client.query(`SELECT DISTINCT unnest(array_agg(categorie_principala)) AS entry FROM public."Cursuri"`, function (err, rez) {
         if (err) {
@@ -116,9 +127,37 @@ app.use(function (req, res, next) {
     });
 });
 
+
+app.use("/*", function (req, res, next) {
+    res.locals.optiuniMeniu = obGlobal.optiuniMeniu;
+    res.locals.Drepturi = Drepturi;
+    if (req.session.utilizator) {
+        req.utilizator = res.locals.utilizator = new Utilizator(req.session.utilizator);
+    }
+    next();
+});
+app.get("/favicon.ico", function (req, res) {
+    res.sendFile(__dirname + "/resurse/favicon-32x32.png");
+});
 app.get(/^\/resurse(\/[a-zA-Z0-9]*(?!\.)[a-zA-Z0-9]*)*$/, function (req, res) {
     initializeazaErori(res, 403);
 });
+
+//mainpage
+app.get(["/", "/index", "/home"], function (req, res) {
+
+    res.render('pagini/index', {
+        ip: req.ip,
+        a: 10,
+        b: 20,
+        imagini: obGlobal.obImagini.imagini,
+        session: req.session,
+        cat: res.locals.cat
+    });
+});
+
+
+//Cursuri
 app.get("/cursuri", function (req, res) {
 
 
@@ -143,6 +182,7 @@ app.get("/cursuri", function (req, res) {
                     res.render("pagini/cursuri", {
                         cursuri: rez.rows,
                         optiuni: [],
+                        session: req.session,
                         cat: res.locals.cat,
                         pret_min: minPrice,
                         pret_max: maxPrice
@@ -184,6 +224,7 @@ app.get("/cursuri/:subcategory", function (req, res) {
                 console.log(result);
                 res.render("pagini/cursuri", {
                     cursuri: result.rows,
+                    session: req.session,
                     optiuni: [],
                     cat: res.locals.cat
                 });
@@ -206,20 +247,220 @@ app.get("/curs/:id", function (req, res) {
         } else
             res.render("pagini/curs", {
                 curs: rezultat.rows[0],
-                cat: res.locals.cat
+                cat: res.locals.cat,
+                session: req.session
             });
     });
 });
+//--------------------------------------------------------------------------------------
 
-app.get(["/", "/index", "/home"], function (req, res) {
-    res.render('pagini/index', {
-        ip: req.ip,
-        a: 10,
-        b: 20,
-        imagini: obGlobal.obImagini.imagini,
-        cat: res.locals.cat
+//Utilizatori
+app.post("/autentificare", function (req, res) {
+    var username;
+    var poza;
+    var formular = new formidable.IncomingForm();
+    formular.parse(req, function (err, campuriText, campuriFisier) {
+        console.log("Inregistrare:", campuriText);
+        poza = path.join(__dirname, "poze_uploadate", username, username + ".jpg");
+        console.log(poza);
+        console.log(campuriFisier);
+        console.log(poza, username);
+        var eroare = "";
+
+        var utilizNou = new Utilizator();
+        try {
+            utilizNou.setareNume = campuriText.nume;
+            utilizNou.setareUsername = campuriText.username;
+            utilizNou.email = campuriText.email;
+            utilizNou.prenume = campuriText.prenume;
+            utilizNou.parola = campuriText.parola;
+            utilizNou.culoare_chat = campuriText.culoare_chat;
+            utilizNou.poza = poza;
+            Utilizator.getUtilizDupaUsername(campuriText.username, {}, function (u, parametru, eroareUser) {
+                if (eroareUser == -1) { //nu exista username-ul in BD
+                    utilizNou.salvareUtilizator();
+                } else {
+                    eroare += "Mai exista username-ul";
+                }
+
+                if (!eroare) {
+                    res.render("pagini/autentificare", {
+                        raspuns: "Inregistrare cu succes!"
+                    })
+
+                } else
+                    res.render("pagini/autentificare", {
+                        err: "Eroare: " + eroare
+                    });
+            })
+
+
+        } catch (e) {
+            console.log(e);
+            eroare += "Eroare site; reveniti mai tarziu";
+            console.log(eroare);
+            res.render("pagini/autentificare", {
+                err: "Eroare: " + eroare
+            })
+        }
+
+
+
+
+    });
+    formular.on("field", function (nume, val) { // 1 
+
+        console.log(`--- ${nume}=${val}`);
+
+        if (nume == "username")
+            username = val;
+    })
+    formular.on("fileBegin", function (nume, fisier) { //2
+        console.log("!!fileBegin");
+        let folderUser = path.join(__dirname, "poze_uploadate", username);
+        console.log(folderUser);
+        if (!fs.existsSync(folderUser)) {
+            try {
+                fs.mkdirSync(folderUser);
+                console.log("Directory created successfully:", folderUser);
+            } catch (err) {
+                console.error("Failed to create directory:", err);
+            }
+        }
+
+        fisier.filepath = path.join(folderUser, username + '.jpg');
+        poza = username + '.jpg';
+        //fisier.filepath=folderUser+"/"+fisier.originalFilename
+        console.log("fileBegin:", poza)
+        console.log("fileBegin, fisier:", fisier)
+
+    })
+    formular.on("file", function (nume, fisier) { //3
+        console.log("file");
+        console.log(nume, fisier);
+    });
+
+
+});
+app.post("/edit-profil", function(req, res){
+    console.log("profil");
+    if (!req.session.utilizator){
+        afiseazaEroare(res,403,)
+        res.render("pagini/eroare_generala",{text:"Nu sunteti logat."});
+        return;
+    }
+    var formular= new formidable.IncomingForm();
+ 
+    formular.parse(req,function(err, campuriText, campuriFile){
+        console.log(campuriText); 
+        AccesBD.getInstanta().updateParametrizat(
+            {tabel:"utilizatori",
+            campuri:["nume","prenume","email","culoare_chat"],
+            valori:[`${campuriText.nume}`,`${campuriText.prenume}`,`${campuriText.email}`,`${campuriText.culoare_chat}`],
+            conditiiAnd:[`username='${campuriText.username}'`]
+        },          
+        function(err, rez){
+            console.log("update"); 
+            if(err){
+                console.log(err);
+                afisareEroare(res,2);
+                return;
+            }
+            console.log(rez.rowCount);
+            if (rez.rowCount==0){
+                res.render("pagini/profil",{mesaj:"Update-ul nu s-a realizat. Verificati parola introdusa."});
+                return;
+            }
+            else{            
+                //actualizare sesiune
+                console.log("ceva");
+                req.session.utilizator.nume= campuriText.nume;
+                req.session.utilizator.prenume= campuriText.prenume;
+                req.session.utilizator.email= campuriText.email;
+                req.session.utilizator.culoare_chat= campuriText.culoare_chat;
+                res.locals.utilizator=req.session.utilizator;
+            }
+ 
+ 
+            res.render("pagini/profil",{mesaj:"Update-ul s-a realizat cu succes."});
+ 
+        });
+       
+ 
     });
 });
+app.post("/login", function (req, res) {
+    console.log("ceva");
+    var formular = new formidable.IncomingForm();
+    formular.parse(req, function (err, campuriText, campuriFisier) {
+        Utilizator.getUtilizDupaUsername(campuriText.username, {
+            req: req,
+            res: res,
+            parola: campuriText.parola
+        }, function (u, obparam) {
+            let parolaCriptata = Utilizator.criptareParola(obparam.parola);
+            console.log('!! ' + u.confirmat_mail);
+            if (u.parola == parolaCriptata && u.confirmat_mail) {
+                u.poza = u.poza ? path.join("poze_uploadate", u.username, u.poza) : "";
+                obparam.req.session.utilizator = u;
+                obparam.req.session.mesajLogin = "Bravo! Te-ai logat!";
+                obparam.req.session.mesajLoginTip = "ok";
+                obparam.res.redirect("/index");
+                //obparam.res.render("/login");
+            } else {
+                console.log("Eroare logare")
+                obparam.req.session.mesajLogin = "Date logare incorecte sau nu a fost confirmat mailul!";
+                obparam.req.session.mesajLoginTip = "eroare";
+                obparam.res.redirect("/index");
+            }
+        })
+    });
+});
+
+app.get("/cod_mail/:token/:username", function (req, res) {
+    console.log(req.params);
+    try {
+        Utilizator.getUtilizDupaUsername(req.params.username, {
+            res: res,
+            token: req.params.token
+        }, function (u, obparam) {
+            AccesBD.getInstanta().update({
+                    tabel: "utilizator",
+                    campuri: {
+                        confirmat_mail: 'true'
+                    },
+                    conditiiAnd: [`cod='${obparam.token}'`]
+                },
+                function (err, rezUpdate) {
+                    if (err || rezUpdate.rowCount == 0) {
+                        console.log("Cod:", err);
+                        showError(res, req.session, 3);
+                    } else {
+                        res.render("pagini/confirmare.ejs", {
+                            cat: res.locals.cat,
+                            session: req.session
+                        });
+                    }
+                })
+        })
+    } catch (e) {
+        console.log(e);
+        showError(res, req.session, 2);
+    }
+});
+app.get("/profil", function (req, res) {
+    const utilizator = req.session.utilizator;
+    const utilizatorInstance = new Utilizator(utilizator);
+    res.render('pagini/profil', {
+        ip: req.ip,
+        imagini: obGlobal.obImagini.imagini,
+        session: req.session,
+        cat: res.locals.cat,
+        utilizator: utilizatorInstance,
+        profile_pic: utilizatorInstance.poza
+    });
+});
+//------------------------------------------------------
 app.get("/certificate", function (req, res) {
     function getRandomNumber(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -235,13 +476,82 @@ app.get("/certificate", function (req, res) {
     res.render('pagini/certificate', {
         ip: req.ip,
         imagini: obGlobal.obImagini.imagini,
+        session: req.session,
         randomIndex: randomNumbers,
         cat: res.locals.cat
     });
 });
+//------------Cos virtual-----------------------------------------
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get('/cos', function (req, res) {
+    const cartIds = req.session.cart || []; 
+  
+    const query = 'SELECT * FROM public."Cursuri" WHERE id = ANY($1)';
+    client.query(query, [cartIds], (error, result) => {
+      if (error) {
+        afiseazaEroare(res, 2);
+      }
+  
+      const produse = result.rows;
+  
+      res.render('pagini/cos', {
+        session: req.session,
+        cat: res.locals.cat,
+        produse: produse 
+      });
+    });
+  });
+
+app.post('/checkoutProduct', (req, res) => {
+    const cursId = req.body.cursId;
+    if (!req.session.cart) {
+      req.session.cart = [];
+    }
+    req.session.cart.push(cursId);
+    console.log('-----------------------------------------');
+    console.log(req.session.cart);
+  
+    res.redirect('/cursuri');
+  });
+
+  app.post('/placeOrder', async (req, res) => {
+    const formData = req.body;
+
+    const fullName = formData.fullName;
+    const email = formData.email;
+    const phone = formData.phone;
+    const workNumber = formData.workNumber || "";
+    const workAddress = formData.workAddress || "";
+
+    const emailSubject = "Placed Order Details";
+    const emailBody = `<h4>Order Details:</h4>
+        <p>Full Name: ${fullName}</p>
+        <p>Email: ${email}</p>
+        <p>Phone Number: ${phone}</p>
+        <p>Work Number: ${workNumber}</p>
+        <p>Work Address: ${workAddress}</p>`;
+
+    try {
+        // Send the email
+        await Utilizator.trimiteMail(emailSubject, emailBody, email); // Pass the 'email' parameter
+
+        // Handle success (redirect, display confirmation, etc.)
+        res.redirect('/cos');
+    } catch (error) {
+        // Handle error (display error page, show error message, etc.)
+        res.redirect('/cos');
+    }
+});
+//-------------------------------------------------------------------
+
+
+
 app.get("/*.ejs", function (req, res) {
     afiseazaEroare(res, 400);
 });
+
+
 
 app.get("/favicon.ico", function (req, res) {
     res.sendFile(__dirname + "/res/ico/favicon-32x32.png");
